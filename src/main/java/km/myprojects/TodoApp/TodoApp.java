@@ -22,7 +22,7 @@ public class TodoApp {
      */
     @GET
     @Path("/get")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public TodoItem getList() {
    	
     	TodoItem todoitem = new TodoItem();
