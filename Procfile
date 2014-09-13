@@ -1,0 +1,1 @@
+web: java -cp target/classes:target/dependency/* km.myprojects.TodoApp.heroku.Main
