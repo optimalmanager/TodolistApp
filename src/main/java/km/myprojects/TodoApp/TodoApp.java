@@ -8,8 +8,8 @@ import javax.ws.rs.core.MediaType;
 /**
  * Root resource (exposed at "myresource" path)
  */
-@Path("myresource")
-public class MyResource {
+@Path("todoapp")
+public class TodoApp {
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent
@@ -19,7 +19,7 @@ public class MyResource {
      */
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String getIt() {
-        return "Hello, Heroku!";
+    public String getList() {
+        return "Hello, TodoApp!";
     }
 }

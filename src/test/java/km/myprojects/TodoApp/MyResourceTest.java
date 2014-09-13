@@ -8,13 +8,13 @@ import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-import km.myprojects.TodoApp.MyResource;
+import km.myprojects.TodoApp.TodoApp;
 
 public class MyResourceTest extends JerseyTest {
 
     @Override
     protected Application configure() {
-        return new ResourceConfig(MyResource.class);
+        return new ResourceConfig(TodoApp.class);
     }
 
     /**
@@ -22,8 +22,8 @@ public class MyResourceTest extends JerseyTest {
      */
     @Test
     public void testGetIt() {
-        final String responseMsg = target().path("myresource").request().get(String.class);
+        final String responseMsg = target().path("todoapp").request().get(String.class);
 
-        assertEquals("Hello, Heroku!", responseMsg);
+        assertEquals("Hello, TodoApp!", responseMsg);
     }
 }
