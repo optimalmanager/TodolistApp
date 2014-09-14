@@ -2,6 +2,9 @@ package km.myprojects.TodoApp;
 
 import java.util.HashMap;
 
+import javax.inject.Singleton;
+
+@Singleton
 public class TodoStore {
 
 	public HashMap<HashMap<String, String>,Boolean> listOfTodos = new HashMap<HashMap<String, String>,Boolean>();

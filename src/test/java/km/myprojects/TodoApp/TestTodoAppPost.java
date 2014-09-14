@@ -28,8 +28,7 @@ public class TestTodoAppPost {
 			System.out.println("Output from Server .... \n");
 			String output = response.getEntity(String.class);
 			System.out.println(output);
-			TodoStore todostore = new TodoStore();
-			
+					
 			WebResource webResource2 = client
 					   .resource("http://powerful-sands-7127.herokuapp.com/todoapp/get");
 			 

@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -27,12 +25,16 @@ public class TodoApp {
      * @return String that will be returned as a text/plain response.
      */
 	TodoStore todoStore = new TodoStore();
-	List<TodoItem> todoItems = new ArrayList<TodoItem>();
     @GET
     @Path("/get")
     public List<TodoItem> getList() {
-  	
+
+    	List<TodoItem> todoItems = new ArrayList<TodoItem>();
+    	
     	todoStore.listOfTodos=todoStore.getListOfTodos();
+    	
+    	if(todoStore.listOfTodos.isEmpty())
+    		todoItems.add(new TodoItem("null","null",false));
     	
     	for(Map.Entry<HashMap<String, String>, Boolean> todoItem: todoStore.listOfTodos.entrySet())
     	{
