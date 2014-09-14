@@ -28,7 +28,6 @@ public class TodoApp {
      */
     @GET
     @Path("/get")
-    @Produces(MediaType.TEXT_XML)
     public List<TodoItem> getList() {
 
     	List<TodoItem> todoItems = new ArrayList<TodoItem>();
