@@ -27,17 +27,12 @@ public class TodoApp {
      * @return String that will be returned as a text/plain response.
      */
 	TodoStore todoStore = new TodoStore();
+	List<TodoItem> todoItems = new ArrayList<TodoItem>();
     @GET
     @Path("/get")
     public List<TodoItem> getList() {
-
-    	List<TodoItem> todoItems = new ArrayList<TodoItem>();
-    	
-    	
+  	
     	todoStore.listOfTodos=todoStore.getListOfTodos();
-    	
-    	if(todoStore.listOfTodos.isEmpty())
-    		todoItems.add(new TodoItem("null","null",false));
     	
     	for(Map.Entry<HashMap<String, String>, Boolean> todoItem: todoStore.listOfTodos.entrySet())
     	{
