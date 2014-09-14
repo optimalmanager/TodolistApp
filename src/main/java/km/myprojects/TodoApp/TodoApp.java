@@ -1,5 +1,8 @@
 package km.myprojects.TodoApp;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -14,7 +17,7 @@ import javax.ws.rs.core.Response;
 @Path("todoapp")
 public class TodoApp {
 
-    /**
+	 /**
      * Method handling HTTP GET requests. The returned object will be sent
      * to the client as "text/plain" media type.
      *
@@ -22,15 +25,12 @@ public class TodoApp {
      */
     @GET
     @Path("/get")
-    @Produces(MediaType.APPLICATION_JSON)
-    public TodoItem getList() {
-   	
-    	TodoItem todoitem = new TodoItem();
-    	todoitem.setTitle("New Task");
-    	todoitem.setBody("Task to do");
-    	todoitem.setDone(false);
+    @Produces(MediaType.TEXT_XML)
+    public HashMap<HashMap<String, String>,Boolean>  getList() {
+
+    	TodoStore todoStore = new TodoStore();
+    	return todoStore.getListOfTodos();
     	
-    	return todoitem;
     }
 
     @POST
@@ -38,6 +38,9 @@ public class TodoApp {
     @Path("/post")
 	public Response  createItem (TodoItem todoitem) {
  
+    	TodoStore todoStore = new TodoStore();
+    	
+    	todoStore.setListOfTodos(todoitem.getTitle(), todoitem.getBody(), todoitem.getDone());
 		String result = "Item saved : "+todoitem;
 		return Response.status(201).entity(result).build();
 	}
