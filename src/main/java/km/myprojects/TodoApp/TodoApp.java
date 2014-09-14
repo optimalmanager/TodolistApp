@@ -31,6 +31,7 @@ public class TodoApp {
 
     	List<TodoItem> todoItems = new ArrayList<TodoItem>();
     	
+    	
     	todoStore.listOfTodos=todoStore.getListOfTodos();
     	
     	if(todoStore.listOfTodos.isEmpty())
@@ -52,6 +53,8 @@ public class TodoApp {
     @Path("/post")
 	public Response  createItem (TodoItem todoitem) {
  
+    	todoStore = new TodoStore();
+
     	todoStore.setListOfTodos(todoitem.getTitle(), todoitem.getBody(), todoitem.getDone());
 		String result = "Item saved : "+todoitem;
 		return Response.status(201).entity(result).build();
