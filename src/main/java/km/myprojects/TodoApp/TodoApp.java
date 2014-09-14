@@ -1,7 +1,10 @@
 package km.myprojects.TodoApp;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -26,11 +29,26 @@ public class TodoApp {
     @GET
     @Path("/get")
     @Produces(MediaType.TEXT_XML)
-    public HashMap<HashMap<String, String>,Boolean>  getList() {
+    public List<TodoItem> getList() {
 
-    	TodoStore todoStore = new TodoStore();
-    	return todoStore.getListOfTodos();
+    	List<TodoItem> todoItems = new ArrayList<TodoItem>();
+    	HashMap<HashMap<String, String>,Boolean> listOfTodos = new HashMap<HashMap<String, String>,Boolean>();
     	
+    	TodoStore todoStore = new TodoStore();
+    	listOfTodos=todoStore.getListOfTodos();
+    	
+    	if(listOfTodos.isEmpty())
+    		todoItems.add(new TodoItem("null","null",false));
+    	
+    	for(Map.Entry<HashMap<String, String>, Boolean> todoItem: listOfTodos.entrySet())
+    	{
+    		HashMap<String, String> titleDesc = new HashMap<String,String>();
+    		titleDesc = todoItem.getKey();
+    		
+    		for(Map.Entry<String, String> items: titleDesc.entrySet())
+    			todoItems.add(new TodoItem(items.getKey(),items.getValue(),todoItem.getValue()));
+    	}
+    	return todoItems;
     }
 
     @POST
