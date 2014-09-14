@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class TodoStore {
 
-	private HashMap<HashMap<String, String>,Boolean> listOfTodos = new HashMap<HashMap<String, String>,Boolean>();
+	public HashMap<HashMap<String, String>,Boolean> listOfTodos = new HashMap<HashMap<String, String>,Boolean>();
 
 	public HashMap<HashMap<String, String>, Boolean> getListOfTodos() {
 		return listOfTodos;

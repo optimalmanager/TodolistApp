@@ -26,20 +26,20 @@ public class TodoApp {
      *
      * @return String that will be returned as a text/plain response.
      */
+	TodoStore todoStore = new TodoStore();
     @GET
     @Path("/get")
     public List<TodoItem> getList() {
 
     	List<TodoItem> todoItems = new ArrayList<TodoItem>();
-    	HashMap<HashMap<String, String>,Boolean> listOfTodos = new HashMap<HashMap<String, String>,Boolean>();
     	
-    	TodoStore todoStore = new TodoStore();
-    	listOfTodos=todoStore.getListOfTodos();
     	
-    	if(listOfTodos.isEmpty())
+    	todoStore.listOfTodos=todoStore.getListOfTodos();
+    	
+    	if(todoStore.listOfTodos.isEmpty())
     		todoItems.add(new TodoItem("null","null",false));
     	
-    	for(Map.Entry<HashMap<String, String>, Boolean> todoItem: listOfTodos.entrySet())
+    	for(Map.Entry<HashMap<String, String>, Boolean> todoItem: todoStore.listOfTodos.entrySet())
     	{
     		HashMap<String, String> titleDesc = new HashMap<String,String>();
     		titleDesc = todoItem.getKey();
@@ -55,8 +55,6 @@ public class TodoApp {
     @Path("/post")
 	public Response  createItem (TodoItem todoitem) {
  
-    	TodoStore todoStore = new TodoStore();
-    	
     	todoStore.setListOfTodos(todoitem.getTitle(), todoitem.getBody(), todoitem.getDone());
 		String result = "Item saved : "+todoitem;
 		return Response.status(201).entity(result).build();

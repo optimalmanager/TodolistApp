@@ -15,7 +15,7 @@ public class TestTodoAppPost {
 			WebResource webResource = client
 			   .resource("http://powerful-sands-7127.herokuapp.com/todoapp/post");
 	 
-			String input = "{\"body\":\"Task to do 2\",\"title\":\"New Task 2\"}";
+			String input = "{\"body\":\"Task to do 2\",\"title\":\"New Task 2\",\"done\":\"false\"}";
 	 
 			ClientResponse response = webResource.type("application/json")
 			   .post(ClientResponse.class, input);
@@ -28,6 +28,16 @@ public class TestTodoAppPost {
 			System.out.println("Output from Server .... \n");
 			String output = response.getEntity(String.class);
 			System.out.println(output);
+			TodoStore todostore = new TodoStore();
+			
+			WebResource webResource2 = client
+					   .resource("http://powerful-sands-7127.herokuapp.com/todoapp/get");
+			 
+			
+			ClientResponse response2 = webResource2.type("application/json")
+					   .get(ClientResponse.class);
+			
+			System.out.println(response2.getEntity(String.class));
 	 
 		  } catch (Exception e) {
 	 
